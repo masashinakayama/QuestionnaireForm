@@ -37,12 +37,13 @@ public class InquiryController {
 	@GetMapping
 	public String index(Model model) {
 		
-		//hands-on
 		return "inquiry/index";
 	}
 	
 	@GetMapping("/form")
-	public String form(InquiryForm inquiryForm, Model model) {
+	public String form(InquiryForm inquiryForm,
+			Model model,
+			@ModelAttribute("complete") String complete) {
 		model.addAttribute("title", "Inquiry Form");
 		return "inquiry/form";
 	}
@@ -62,20 +63,22 @@ public class InquiryController {
 			model.addAttribute("title", "InquiryForm");
 			return "inquiry/form";
 		}
-
-		//hands-on
 		model.addAttribute("title", "ConfirmPage");
 		return "inquiry/confirm";
 	}
 	
 	@PostMapping("/complete")
-	public String complete(/*Add parameters. */) {
+	public String complete(@Validated InquiryForm inquiryForm,
+			Model model,
+			BindingResult result,
+			RedirectAttributes redirectAttributes) {
 		
-		//hands-on
-		
-		//redirect
-		
-		return "";
+		if(result.hasErrors()) {
+			model.addAttribute("title", "InquiryForm");
+			return "inquiry/form";
+		}
+		redirectAttributes.addFlashAttribute("complete", "Registered!!");
+		return "redirect:/inquiry/form";
 	}
 	
 }

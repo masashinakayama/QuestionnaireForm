@@ -11,6 +11,7 @@ import com.example.demo.repository.InquiryDao;
 /*
  * Add an annotation here
  */
+@Service
 public class InquiryServiceImpl implements InquiryService{
 
 	private final InquiryDao dao;
@@ -22,7 +23,7 @@ public class InquiryServiceImpl implements InquiryService{
 	
 	@Override
 	public void save(Inquiry inquiry) {
-		//hands-on
+		dao.insertInquiry(inquiry);
 	}
 
 	
@@ -39,8 +40,7 @@ public class InquiryServiceImpl implements InquiryService{
 	@Override
 	public List<Inquiry> getAll() {
 		
-		//hands-on
 		
-		return null;
+		return dao.getAll();
 	}
 }

@@ -4,6 +4,8 @@ INSERT INTO inquiry(name, email, contents, created)
 VALUES('Emma', 'sample2@example.com', 'GoodMorning', '2019-12-18 12:10:52');
 INSERT INTO inquiry(name, email, contents, created)
 VALUES('William', 'sample3@example.com', 'GoodEvening', '2019-12-18 15:10:52');
+INSERT INTO inquiry(name, email, contents, created)
+VALUES('Masashi', 'masashiii.com', 'Thank you!!', '2020-09-28 22:29:52');
 
 INSERT INTO survey(age, satisfaction, comment, created)
 VALUES(23, 5, 'Good!', '2019-01-03 11:02:35');

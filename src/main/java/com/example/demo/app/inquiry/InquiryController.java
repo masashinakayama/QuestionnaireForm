@@ -37,22 +37,22 @@ public class InquiryController {
 	public String index(Model model) {
 		List<Inquiry> list = inquiryService.getAll();
 		
-		Inquiry inquiry = new Inquiry();
-		inquiry.setId(4);
-		inquiry.setName("Ja");
-		inquiry.setEmail("Sample4@aaa");
-		inquiry.setContents("アイウエオ");
-		
-		try {
-			inquiryService.update(inquiry);
-		} catch(InquiryNotFoundException e) {
-			model.addAttribute("message", e);
-			return "error/CustomPage";
-		}
+//		Inquiry inquiry = new Inquiry();
+//		inquiry.setId(4);
+//		inquiry.setName("Ja");
+//		inquiry.setEmail("Sample4@aaa");
+//		inquiry.setContents("アイウエオ");
+//		inquiryService.update(inquiry);
+//		try {
+//			inquiryService.update(inquiry);
+//		} catch(InquiryNotFoundException e) {
+//			model.addAttribute("message", e);
+//			return "error/CustomPage";
+//		}
 
 		model.addAttribute("inquiryList", list);
 		model.addAttribute("title", "Inquiry Index");
-		return "inquiry/index";
+		return "inquiry/index_boot";
 	}
 	
 	@GetMapping("/form")
@@ -60,15 +60,14 @@ public class InquiryController {
 			Model model,
 			@ModelAttribute("complete") String complete) {
 		model.addAttribute("title", "Inquiry Form");
-		return "inquiry/form";
+		return "inquiry/form_boot";
 	}
 	
 	@PostMapping("/form")
 	public String formGoBack(InquiryForm inquiryForm, Model model) {
 		model.addAttribute("title", "InquiryForm");
-		return "inquiry/form";
+		return "inquiry/form_boot";
 	}
-	
 	
 	@PostMapping("/confirm")
 	public String confirm(@Validated InquiryForm inquiryForm,
@@ -76,10 +75,10 @@ public class InquiryController {
 			Model model) {
 		if(result.hasErrors()) {
 			model.addAttribute("title", "InquiryForm");
-			return "inquiry/form";
+			return "inquiry/form_boot";
 		}
 		model.addAttribute("title", "ConfirmPage");
-		return "inquiry/confirm";
+		return "inquiry/confirm_boot";
 	}
 	
 	@PostMapping("/complete")
@@ -90,7 +89,7 @@ public class InquiryController {
 		
 		if(result.hasErrors()) {
 			model.addAttribute("title", "InquiryForm");
-			return "inquiry/form";
+			return "inquiry/form_boot";
 		}
 		
 		Inquiry inquiry = new Inquiry();
